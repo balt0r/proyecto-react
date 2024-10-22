@@ -1,3 +1,5 @@
+import React from "react"
+
 const ItemDetail = ({ id, name, im, category, description, price, stock}) => {
     return (
         <article className="CardItem">
@@ -26,3 +28,5 @@ const ItemDetail = ({ id, name, im, category, description, price, stock}) => {
         </article>
     )
 }
+
+export default ItemDetail 

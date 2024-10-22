@@ -2,24 +2,26 @@ import { useState, useEffect } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
 
-
-
-const ItemDetaiContainer = () => {
-    const [product, setProduct] = useState(null)
-    const { ItemId } = useParams
+const ItemDetailContainer = () => {
+    const [product, setProduct] = useState(null);
+    const { ItemId } = useParams(); 
 
     useEffect(() => {
-        fetch('//dummyjson.com/test')
-        .then(res => res.json())
-        .then(console.log);
-    }, [ItemId])
+        fetch(`https://dummyjson.com/products/${ItemId}`)
+            .then(res => res.json())
+            .then(data => setProduct(data)) 
+            .catch(error => console.error('Error fetching product:', error)); 
+    }, [ItemId]); 
 
-    return(
-        <div className="ItemDetailContainer" >
-            <ItemDetail {...product}/>
+    if (!product) {
+        return <p>Cargando producto...</p>; 
+    }
+
+    return (
+        <div className="ItemDetailContainer">
+            <ItemDetail {...product} /> {}
         </div>
-    )
+    );
+};
 
-}
-
-export default ItemDetailContainer
+export default ItemDetailContainer;
