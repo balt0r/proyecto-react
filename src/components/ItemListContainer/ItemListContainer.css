@@ -1,0 +1,52 @@
+.ItemListContainer {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.ItemListContainer h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.ItemList {
+    display: flex;                 
+    flex-wrap: nowrap;            
+    overflow-x: auto;             
+    justify-content: flex-start;    
+    gap: 15px;                     
+}
+
+.ProductCard {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s;
+    min-width: 200px;              
+}
+
+.ProductCard:hover {
+    transform: translateY(-5px);
+}
+
+.ProductImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.ProductTitle {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+.ProductPrice {
+    font-size: 1rem;
+    color: #666;
+}
+
