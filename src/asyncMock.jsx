@@ -40,3 +40,12 @@ export const getProductById = async (productId) => {
         }, 500)
     })
 }
+
+export const getProductsByCategory = async (categoryId) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const filteredProducts = products.filter(product => product.category === categoryId);
+            resolve(filteredProducts);
+        }, 500); 
+    });
+};
