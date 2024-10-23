@@ -1,0 +1,39 @@
+.ItemDetailContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #030000;
+}
+
+.ItemDetailContainer h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.ItemDetail {
+    max-width: 600px; 
+    background-color: rgb(0, 0, 0);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.ItemDetail:hover {
+    transform: translateY(-3px);
+}
+
+.ItemImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.ItemDescription {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #666;
+}

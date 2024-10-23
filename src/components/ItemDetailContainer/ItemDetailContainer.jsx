@@ -1,25 +1,26 @@
-import { useState, useEffect } from "react";
-import ItemDetail from "../ItemDetail/ItemDetail";
-import { useParams } from "react-router-dom";
+import './ItemDetailContainer.css'
+import { useState, useEffect } from "react"
+import { getProductById } from '../../asyncMock'
+import ItemDetail from "../ItemDetail/ItemDetail"
+import { useParams } from 'react-router-dom'
 
 const ItemDetailContainer = () => {
-    const [product, setProduct] = useState(null);
-    const { ItemId } = useParams(); 
+    const [product, setProduct] = useState(null)
+    const { itemId } = useParams()
 
     useEffect(() => {
-        fetch(`https://dummyjson.com/products/${ItemId}`)
-            .then(res => res.json())
-            .then(data => setProduct(data)) 
-            .catch(error => console.error('Error fetching product:', error)); 
-    }, [ItemId]); 
-
-    if (!product) {
-        return <p>Cargando producto...</p>; 
-    }
+        getProductById('itemId')
+        .then(reponse => {
+            setProduct(Response)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+    }, [itemId]); 
 
     return (
         <div className="ItemDetailContainer">
-            <ItemDetail {...product} /> {}
+            <ItemDetail {...product} /> 
         </div>
     );
 };
