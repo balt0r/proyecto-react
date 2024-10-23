@@ -1,6 +1,8 @@
+import './ItemDetail.css'
 import React from "react"
+import ItemCount from '../ItemCount/ItemCount'
 
-const ItemDetail = ({ id, name, im, category, description, price, stock}) => {
+const ItemDetail = ({ id, name, img, category, description, price, stock}) => {
     return (
         <article className="CardItem">
             <header className="Header">
