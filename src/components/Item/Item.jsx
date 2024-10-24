@@ -25,7 +25,6 @@ const Item = ({id, name, img, price, stock}) => {
                 <Link to={`/item/${id}`} className="Option">Ver detalle</Link>
             </footer>
         </article>
-
     )
 }
 

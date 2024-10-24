@@ -1,34 +1,74 @@
 .NavBar {
     display: flex;
     align-items: center;
-    justify-content: space-between;        
-    padding: 10px 20px;           
-    position: relative;             
-    z-index: 1000;                  
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1000;
 }
 
 .NavBar h3 {
-    color: white;                  
-    margin: 0;                    
+    color: white;
+    margin: 0;
 }
 
 .Categories {
-    display: flex;                
-    gap: 15px;                    
+    display: flex;
+    gap: 15px;
 }
 
 .Option {
-    color: white;                 
-    text-decoration: none;        
-    padding: 10px 15px;          
-    transition: background-color 0.3s; 
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
 }
 
 .ActiveOption {
-    color: yellow;                
+    color: yellow;
 }
 
 .Option:hover {
-    background-color: #575757;    
-    border-radius: 5px;           
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+.menu-toggle {
+    display: none; 
+    color: white; 
+    font-size: 24px; 
+    cursor: pointer; 
+    padding: 10px; 
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; 
+        z-index: 1;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .Categories {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 60px; 
+        left: 0;
+        width: 100%;
+        background-color: #6d5656; 
+    }
+
+    .Categories.open {
+        display: flex;
+        color: white;
+        z-index: 1000;
+    }
+
+    .Categories.open, .ActiveOption {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        font-weight: bold;
+    }
 }
