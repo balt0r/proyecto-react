@@ -1,4 +1,4 @@
-const products = [
+/*const products = [
     
     {id: '1', name: 'iphone 12', category: 'celular', img: 'imagen.jpg', stock: '25', description: 'descripcion de iphone 12'},
     {id: '2', name: 'iphone x', category: 'celular', img: 'imagen.jpg', stock: '30', description: 'descripcion de iphone x'},

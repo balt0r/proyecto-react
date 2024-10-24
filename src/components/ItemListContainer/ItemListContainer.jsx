@@ -1,32 +1,34 @@
-import { useState, useEffect } from "react"
-import { getProducts } from "../../asyncMock"
-import ItemList from "../ItemList/ItemList"
-import { useParams } from "react-router-dom"
-import { getProductsByCategory } from "../../asyncMock"
-import './ItemListContainer.css'
+import { useState, useEffect } from "react";
+import { fetchProducts, fetchProductsByCategory } from "../../api"; 
+import ItemList from "../ItemList/ItemList";
+import { useParams } from "react-router-dom";
+import './ItemListContainer.css';
 
-
-const ItemListConteiner = ({ greeting }) => {
-    const [products, setProducs] = useState([])
-    const { categoryId } = useParams() 
+const ItemListContainer = ({ greeting }) => {
+    const [products, setProducts] = useState([]);
+    const { categoryId } = useParams();
 
     useEffect(() => {
-        const asyncFunc = categoryId ? getProductsByCategory : getProducts 
+        const asyncFunc = categoryId ? fetchProductsByCategory : fetchProducts;
 
-       asyncFunc(categoryId)
-       .then(Response => {
-            setProducs(Response)
-       })
-       .catch(error => {
-            console.error(error)
-       })
-    }, [categoryId])
+        const getProducts = async () => {
+            try {
+                const productsData = await asyncFunc(categoryId);
+                setProducts(productsData);
+            } catch (error) {
+                console.error("Failed to fetch products", error);
+            }
+        };
+
+        getProducts();
+    }, [categoryId]);
+
     return (
         <div>
             <h1>{greeting}</h1>
-            <ItemList products={products}/>
-        </div> 
-    )
-}
+            <ItemList products={products} />
+        </div>
+    );
+};
 
-export default ItemListConteiner
+export default ItemListContainer;

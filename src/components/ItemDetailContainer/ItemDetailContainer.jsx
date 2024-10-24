@@ -1,42 +1,40 @@
 import './ItemDetailContainer.css';
 import { useState, useEffect } from "react";
-import { getProductById } from '../../asyncMock';
+import { fetchProductById } from '../../api';
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
     const { itemId } = useParams();
 
     useEffect(() => {
         const fetchProduct = async () => {
-            console.log("Fetching product with ID:", itemId);
             try {
-                const response = await getProductById(itemId);
-                console.log("Product response:", response);
-                setProduct(response);
+                const data = await fetchProductById(itemId); 
+                setProduct(data);
             } catch (error) {
                 console.error("Error fetching product:", error);
             } finally {
-                setLoading(false); 
+                setLoading(false);
             }
         };
 
         fetchProduct();
     }, [itemId]);
 
+    if (loading) {
+        return <p>Cargando...</p>;
+    }
+
+    if (!product) {
+        return <p>Producto no encontrado.</p>;
+    }
+
     return (
         <div className="ItemDetailContainer">
-            {loading ? (
-                <p>Cargando...</p> 
-            ) : (
-                product ? (
-                    <ItemDetail {...product} />
-                ) : (
-                    <p>Producto no encontrado.</p> 
-                )
-            )}
+            <ItemDetail {...product} />
         </div>
     );
 };
