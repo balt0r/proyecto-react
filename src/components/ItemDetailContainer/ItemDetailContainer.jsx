@@ -1,8 +1,10 @@
 import './ItemDetailContainer.css';
 import { useState, useEffect } from "react";
-import { fetchProductById } from '../../api';
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from 'react-router-dom';
+
+import { getDoc, doc } from 'firebase/firestore';
+import { db } from '../../services/firebase/firebaseConfig';
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState(null);
@@ -10,18 +12,22 @@ const ItemDetailContainer = () => {
     const { itemId } = useParams();
 
     useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const data = await fetchProductById(itemId); 
-                setProduct(data);
-            } catch (error) {
-                console.error("Error fetching product:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+        setLoading(true)
 
-        fetchProduct();
+        const docRef = doc(db, 'products', itemId)
+
+        getDoc(docRef)
+            .then(response => {
+                const data = response.data()
+                const productsAdapted = { id: response.id, ...data}
+                setProduct(productsAdapted)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }, [itemId]);
 
     if (loading) {
