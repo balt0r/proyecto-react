@@ -4,6 +4,7 @@ import  Navbar  from './components/NavBar/NavBar';
 import ItemListConteiner from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import { CartProvider } from './components/context/CartContext';
+import { Cart } from './components/Cart/Cart';
 
 function App() {
     return (
