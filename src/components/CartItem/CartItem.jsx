@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import CartContext from "../context/CartContext";
 import './CartItem.css';
 
-const CartItem = ({ id, name, price, quantity, image, removeItem }) => {
+const CartItem = ({ id, name, price, quantity, image }) => {
+    const { removeItem } = useContext(CartContext); 
+
     return (
         <div className="CartItem">
             <img src={image} alt={name} />

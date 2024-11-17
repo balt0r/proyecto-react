@@ -35,10 +35,10 @@
   text-decoration: underline;
 }
 
-.CartWidget {
+/*.CartWidget {
   display: flex;
   align-items: center;
-}
+}*/
 
 .ItemListContainer {
   padding: 20px;
