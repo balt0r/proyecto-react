@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { db } from "../../services/firebase/db";
 import CartContext from "../context/CartContext";
 import { 
@@ -12,6 +12,7 @@ import {
     addDoc 
 } from "firebase/firestore";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
+import Swal from "sweetalert2";
 
 const Checkout = () => {
     const [loading, setLoading] = useState(false);
@@ -46,7 +47,6 @@ const Checkout = () => {
 
             const productsRef = collection(db, "items");
 
-            // Consulta en Firestore con filtro 'in' para los IDs del carrito
             const productsAddedFromFirestore = await getDocs(
                 query(productsRef, where(documentId(), "in", ids))
             );
@@ -74,7 +74,7 @@ const Checkout = () => {
 
                 const orderAdded = await addDoc(orderRef, objOrder);
 
-                setOrderId(orderAdded.id);
+                setOrderId(orderAdded.id); // Set the order ID
                 clearCart();
             } else {
                 console.error("Hay productos que están fuera de stock:", outOfStock);
@@ -86,12 +86,19 @@ const Checkout = () => {
         }
     };
 
+    useEffect(() => {
+        if (orderId) {
+            // Solo mostrar la alerta cuando el orderId haya sido establecido
+            Swal.fire({
+                icon: "success",
+                title: "Orden exitosa",
+                text: `El ID de su orden es: ${orderId}`,
+            });
+        }
+    }, [orderId]); // Se ejecutará cada vez que orderId cambie
+
     if (loading) {
         return <h1>Se está generando su orden...</h1>;
-    }
-
-    if (orderId) {
-        return <h1>El ID de su orden es: {orderId}</h1>;
     }
 
     return (
