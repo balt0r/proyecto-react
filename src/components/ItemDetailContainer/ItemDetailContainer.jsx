@@ -4,7 +4,7 @@ import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from 'react-router-dom';
 
 import { getDoc, doc } from 'firebase/firestore';
-import { db } from '../../services/firebase/firebaseConfig';
+import { db } from '../../services/firebase/db';
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState(null);
@@ -23,7 +23,7 @@ const ItemDetailContainer = () => {
                 setProduct(productsAdapted)
             })
             .catch(error => {
-                console.log(error)
+                console.log("Se rompio el itemDetail",error)
             })
             .finally(() => {
                 setLoading(false)

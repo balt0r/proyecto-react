@@ -3,7 +3,7 @@ import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import './ItemListContainer.css';
 import { getDocs, collection, query, where, } from "firebase/firestore";
-import { db } from "../../services/firebase/firebaseConfig.jsx";
+import { db, itemskey } from '../../services/firebase/db.js'
 
 const ItemListContainer = ({ greeting }) => {
     const [products, setProducts] = useState([]);
@@ -14,8 +14,8 @@ const ItemListContainer = ({ greeting }) => {
         setLoading(true) 
 
         const collectionRef = categoryId
-            ? query(collection(db, 'products'), where('category', '==', categoryId))
-            : collection(db, 'items')
+            ? query(collection(db, itemskey), where('category', '==', categoryId))
+            : collection(db, itemskey)
 
         getDocs(collectionRef)
             .then(response => {
@@ -31,8 +31,6 @@ const ItemListContainer = ({ greeting }) => {
             .finally(() => {
                 setLoading(false)
             })
-
-        getProducts();
 
     }, [categoryId]);
 

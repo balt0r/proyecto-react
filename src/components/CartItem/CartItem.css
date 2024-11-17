@@ -1,0 +1,66 @@
+/* Contenedor del producto */
+.CartItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    margin: 10px 0;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen del producto */
+.CartItem img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Información del producto */
+.CartItem .CartDetails {
+    flex: 1;
+    margin-left: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.CartItem .CartDetails h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #111;
+}
+
+.CartItem .CartDetails p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Precio y cantidad */
+.CartItem .CartActions {
+    text-align: right;
+    font-size: 14px;
+}
+
+.CartItem .CartActions p {
+    margin: 5px 0;
+}
+
+/* Botones de acción */
+.CartItem button {
+    padding: 5px 10px;
+    margin-top: 5px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.CartItem button:hover {
+    background-color: #ff4d4d;
+}

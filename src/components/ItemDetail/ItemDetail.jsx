@@ -4,7 +4,7 @@ import ItemCount from '../ItemCount/ItemCount';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 
-const ItemDetail = ({ id, title, image, category, description, price}) => {
+const ItemDetail = ({ id, title, image, category, description, price,...props}) => {
     const [quantityAdded, setQuantityAdded] = useState(0);
     const { addItem } = useContext(CartContext);
 
